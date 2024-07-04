@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center;">All contests</h1>
+    <script>
+
+    </script>
+    <div class="Table" style="width: 60%; text-align: center; margin-left: auto; margin-right: auto;">
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <th>Start</th>
+                <th>Length</th>
+            </tr>
+            <% content.forEach(element => { %>
+                <% if(element.relativeTimeSeconds <= 0) { %>
+                <tr>
+                    <th>
+                        <a href="https://codeforces.com/contest/<%= element.id %>"><%= element.name %></a>
+                    </th>
+                    <th>
+                        <%= new Date(element.startTimeSeconds * 1000).toLocaleString() %>
+                    </th>
+                    <th>
+                        <%= Math.floor(element.durationSeconds / 3600) %> : <%= (element.durationSeconds % 3600)/60 %>
+                    </th>
+                </tr>
+                <% } %>
+            <% }); %>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>
+

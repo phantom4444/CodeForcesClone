@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Problemset</h1>
+    <div class="filter">
+        <h2>Filter Problems by rating</h2>
+        <form id="myForm" method="post" action="/filter">
+            <label for="idInput">rating:</label>
+            <input type="text" id="idInput" name="rating">
+            <button type="submit" class="form-submit">Go</button>
+        </form>
+    </div>
+
+    <div class="Table" style="width: 60%; text-align: center; margin-left: auto; margin-right: auto;">
+        <table>
+            <tbody>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>tags</th>
+                </tr>
+                <% p.forEach(element => { %>
+                    
+                    <tr>
+                        <th>
+                            <a href="https://codeforces.com/problemset/problem/<%= element.contestId %>/<%= element.index %>"><%= element.contestId %><%= element.index %></a>
+                        </th>
+                        <th>
+                            <a href="https://codeforces.com/problemset/problem/<%= element.contestId %>/<%= element.index %>"><%= element.name %></a>
+                        </th>
+                        <th>
+                            <%= element.rating %>
+                        </th>
+                        <th>
+                            <% element.tags.forEach(tag => { %>
+                               <% if (tag === element.tags[element.tags.length-1]) {%>
+                                <%= tag %>
+                                <% } else {%>
+                                <%= tag %>,
+                            <%} }); %>
+                        </th>
+                    </tr>
+                    
+                <% }); %>
+            </tbody>
+        </table>
+        </div>
+
+</body>
+</html>
